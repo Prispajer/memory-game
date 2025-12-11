@@ -4,11 +4,11 @@
 
 Aby pobrać repozytorium na swój komputer, skorzystaj z poniższej komendy:
 
-git clone https://github.com/Prispajer/memory-game-go-online
+git clone https://github.com/Prispajer/memory-game
 
 ### 2. Przejdź do folderu projektu
 
-cd memory-game-go-online
+cd memory-game
 
 ### 3. Zainstaluj zależności
 
