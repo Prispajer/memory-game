@@ -39,24 +39,19 @@ const GameBoard = () => {
   }, [gameState, selectedDifficulty]);
 
   React.useEffect(() => {
-    if (generatedTiles && generatedTiles.length > 0) {
-      if (generatedTiles.every((tile) => tile.isMatched)) {
+    if (generatedTiles && generatedTiles.length > 0 && generatedTiles.every((tile) => tile.isMatched)) {
         setGameState(GameState.GameOver);
         saveGameHistory(
           movesCount,
           mistakesCount,
           timeElapsed,
-          selectedDifficulty as GameDifficulty
-        );
-      }
+          selectedDifficulty as GameDifficulty);
     }
   }, [
     selectedDifficulty,
     mistakesCount,
     movesCount,
     timeElapsed,
-    generatedTiles,
-    setGameState,
   ]);
 
   return (

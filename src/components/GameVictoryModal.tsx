@@ -1,5 +1,5 @@
 import { GameDifficulty } from "../types/enum";
-import { loadLastGameHistory } from "../utils/localStorage";
+import { loadGameHistory } from "../utils/localStorage";
 
 export const GameVictoryModal = ({
   movesCount,
@@ -16,6 +16,9 @@ export const GameVictoryModal = ({
   stopGame: () => void;
   startGame: () => void;
 }) => {
+    const history = loadGameHistory();
+    const lastHistoryRecord = history.length ? history[history.length - 1] : null;
+
   return (
     <>
       <div className="game-victory-backdrop"></div>
@@ -23,13 +26,13 @@ export const GameVictoryModal = ({
         <h1>Congratulations! You won!</h1>
         <h2>Your statistics:</h2>
         <ul>
-          {loadLastGameHistory() ? (
+          {history.length > 0 ? (
             <>
-              <li>Moves: {loadLastGameHistory().moves}</li>
-              <li>Mistakes: {loadLastGameHistory().mistakes}</li>
-              <li>Time: {loadLastGameHistory().time} seconds</li>
+              <li>Moves: {lastHistoryRecord.moves}</li>
+              <li>Mistakes: {lastHistoryRecord.mistakes}</li>
+              <li>Time: {lastHistoryRecord.time} seconds</li>
               <li>
-                Difficulty: {GameDifficulty[loadLastGameHistory().difficulty]}
+                Difficulty: {GameDifficulty[lastHistoryRecord.difficulty]}
               </li>
             </>
           ) : (

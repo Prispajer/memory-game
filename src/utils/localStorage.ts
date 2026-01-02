@@ -1,4 +1,4 @@
-import { GameDifficulty } from "../types/enum";
+import {GameDifficulty} from "../types/enum";
 
 export const saveGameHistory = (
   movesCount: number,
@@ -20,9 +20,7 @@ export const saveGameHistory = (
       time: timeElapsed,
     };
 
-    const existingGameHistory = JSON.parse(
-      localStorage.getItem("gameHistory") || "[]"
-    );
+    const existingGameHistory = loadGameHistory();
     existingGameHistory.push(gameHistory);
     localStorage.setItem("gameHistory", JSON.stringify(existingGameHistory));
   } else {
@@ -31,14 +29,7 @@ export const saveGameHistory = (
 };
 
 export const loadGameHistory = () => {
-  const existingGameHistory = JSON.parse(
-    localStorage.getItem("gameHistory") || "[]"
+    return JSON.parse(
+      localStorage.getItem("gameHistory") || "[]"
   );
-  return existingGameHistory;
-};
-
-export const loadLastGameHistory = () => {
-  return loadGameHistory().length > 0
-    ? loadGameHistory()[loadGameHistory().length - 1]
-    : null;
 };
